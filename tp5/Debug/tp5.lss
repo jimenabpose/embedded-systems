@@ -1,0 +1,1158 @@
+
+tp5.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000006e6  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .stab         00001c5c  00000000  00000000  0000073c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  2 .stabstr      00000c3a  00000000  00000000  00002398  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 38 00 	jmp	0x70	; 0x70 <__ctors_end>
+   4:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+   8:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+   c:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  10:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  14:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  18:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  1c:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  20:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  24:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  28:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  2c:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  30:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  34:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  38:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  3c:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  40:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  44:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  48:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  4c:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  50:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  54:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  58:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  5c:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  60:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  64:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  68:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  6c:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+
+00000070 <__ctors_end>:
+  70:	11 24       	eor	r1, r1
+  72:	1f be       	out	0x3f, r1	; 63
+  74:	cf ef       	ldi	r28, 0xFF	; 255
+  76:	d0 e1       	ldi	r29, 0x10	; 16
+  78:	de bf       	out	0x3e, r29	; 62
+  7a:	cd bf       	out	0x3d, r28	; 61
+
+0000007c <__do_copy_data>:
+  7c:	11 e0       	ldi	r17, 0x01	; 1
+  7e:	a0 e0       	ldi	r26, 0x00	; 0
+  80:	b1 e0       	ldi	r27, 0x01	; 1
+  82:	e6 ee       	ldi	r30, 0xE6	; 230
+  84:	f6 e0       	ldi	r31, 0x06	; 6
+  86:	02 c0       	rjmp	.+4      	; 0x8c <.do_copy_data_start>
+
+00000088 <.do_copy_data_loop>:
+  88:	05 90       	lpm	r0, Z+
+  8a:	0d 92       	st	X+, r0
+
+0000008c <.do_copy_data_start>:
+  8c:	a0 30       	cpi	r26, 0x00	; 0
+  8e:	b1 07       	cpc	r27, r17
+  90:	d9 f7       	brne	.-10     	; 0x88 <.do_copy_data_loop>
+
+00000092 <__do_clear_bss>:
+  92:	11 e0       	ldi	r17, 0x01	; 1
+  94:	a0 e0       	ldi	r26, 0x00	; 0
+  96:	b1 e0       	ldi	r27, 0x01	; 1
+  98:	01 c0       	rjmp	.+2      	; 0x9c <.do_clear_bss_start>
+
+0000009a <.do_clear_bss_loop>:
+  9a:	1d 92       	st	X+, r1
+
+0000009c <.do_clear_bss_start>:
+  9c:	a0 30       	cpi	r26, 0x00	; 0
+  9e:	b1 07       	cpc	r27, r17
+  a0:	e1 f7       	brne	.-8      	; 0x9a <.do_clear_bss_loop>
+  a2:	0e 94 fd 02 	call	0x5fa	; 0x5fa <main>
+  a6:	0c 94 71 03 	jmp	0x6e2	; 0x6e2 <_exit>
+
+000000aa <__bad_interrupt>:
+  aa:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000ae <EEPROM_write>:
+#include "EEPROM.h"
+
+/* Se deben controlar las interrupciones para que todas estas funciones sean atomicas */
+
+void EEPROM_write(unsigned int uiAddress, unsigned char ucData) {
+  ae:	df 93       	push	r29
+  b0:	cf 93       	push	r28
+  b2:	00 d0       	rcall	.+0      	; 0xb4 <EEPROM_write+0x6>
+  b4:	0f 92       	push	r0
+  b6:	cd b7       	in	r28, 0x3d	; 61
+  b8:	de b7       	in	r29, 0x3e	; 62
+  ba:	9a 83       	std	Y+2, r25	; 0x02
+  bc:	89 83       	std	Y+1, r24	; 0x01
+  be:	6b 83       	std	Y+3, r22	; 0x03
+	/* Wait for completion of previous write */
+	while(EECR & (1<<EEPE));
+  c0:	ef e3       	ldi	r30, 0x3F	; 63
+  c2:	f0 e0       	ldi	r31, 0x00	; 0
+  c4:	80 81       	ld	r24, Z
+  c6:	88 2f       	mov	r24, r24
+  c8:	90 e0       	ldi	r25, 0x00	; 0
+  ca:	82 70       	andi	r24, 0x02	; 2
+  cc:	90 70       	andi	r25, 0x00	; 0
+  ce:	00 97       	sbiw	r24, 0x00	; 0
+  d0:	b9 f7       	brne	.-18     	; 0xc0 <EEPROM_write+0x12>
+
+	/* Set up address and Data Registers */
+	EEAR = uiAddress;
+  d2:	e1 e4       	ldi	r30, 0x41	; 65
+  d4:	f0 e0       	ldi	r31, 0x00	; 0
+  d6:	89 81       	ldd	r24, Y+1	; 0x01
+  d8:	9a 81       	ldd	r25, Y+2	; 0x02
+  da:	91 83       	std	Z+1, r25	; 0x01
+  dc:	80 83       	st	Z, r24
+	EEDR = ucData;
+  de:	e0 e4       	ldi	r30, 0x40	; 64
+  e0:	f0 e0       	ldi	r31, 0x00	; 0
+  e2:	8b 81       	ldd	r24, Y+3	; 0x03
+  e4:	80 83       	st	Z, r24
+	/* Write logical one to EEMPE */
+	EECR |= (1<<EEMPE);
+  e6:	af e3       	ldi	r26, 0x3F	; 63
+  e8:	b0 e0       	ldi	r27, 0x00	; 0
+  ea:	ef e3       	ldi	r30, 0x3F	; 63
+  ec:	f0 e0       	ldi	r31, 0x00	; 0
+  ee:	80 81       	ld	r24, Z
+  f0:	84 60       	ori	r24, 0x04	; 4
+  f2:	8c 93       	st	X, r24
+	/* Start eeprom write by setting EEPE */
+	EECR |= (1<<EEPE);
+  f4:	af e3       	ldi	r26, 0x3F	; 63
+  f6:	b0 e0       	ldi	r27, 0x00	; 0
+  f8:	ef e3       	ldi	r30, 0x3F	; 63
+  fa:	f0 e0       	ldi	r31, 0x00	; 0
+  fc:	80 81       	ld	r24, Z
+  fe:	82 60       	ori	r24, 0x02	; 2
+ 100:	8c 93       	st	X, r24
+}
+ 102:	0f 90       	pop	r0
+ 104:	0f 90       	pop	r0
+ 106:	0f 90       	pop	r0
+ 108:	cf 91       	pop	r28
+ 10a:	df 91       	pop	r29
+ 10c:	08 95       	ret
+
+0000010e <EEPROM_read>:
+
+unsigned char EEPROM_read(unsigned int uiAddress) {
+ 10e:	df 93       	push	r29
+ 110:	cf 93       	push	r28
+ 112:	00 d0       	rcall	.+0      	; 0x114 <EEPROM_read+0x6>
+ 114:	cd b7       	in	r28, 0x3d	; 61
+ 116:	de b7       	in	r29, 0x3e	; 62
+ 118:	9a 83       	std	Y+2, r25	; 0x02
+ 11a:	89 83       	std	Y+1, r24	; 0x01
+	/* Wait for completion of previous write */
+	while(EECR & (1<<EEPE));
+ 11c:	ef e3       	ldi	r30, 0x3F	; 63
+ 11e:	f0 e0       	ldi	r31, 0x00	; 0
+ 120:	80 81       	ld	r24, Z
+ 122:	88 2f       	mov	r24, r24
+ 124:	90 e0       	ldi	r25, 0x00	; 0
+ 126:	82 70       	andi	r24, 0x02	; 2
+ 128:	90 70       	andi	r25, 0x00	; 0
+ 12a:	00 97       	sbiw	r24, 0x00	; 0
+ 12c:	b9 f7       	brne	.-18     	; 0x11c <EEPROM_read+0xe>
+
+	/* Set up address register */
+	EEAR = uiAddress;
+ 12e:	e1 e4       	ldi	r30, 0x41	; 65
+ 130:	f0 e0       	ldi	r31, 0x00	; 0
+ 132:	89 81       	ldd	r24, Y+1	; 0x01
+ 134:	9a 81       	ldd	r25, Y+2	; 0x02
+ 136:	91 83       	std	Z+1, r25	; 0x01
+ 138:	80 83       	st	Z, r24
+	/* Start eeprom read by writing EERE */
+	EECR |= (1<<EERE);
+ 13a:	af e3       	ldi	r26, 0x3F	; 63
+ 13c:	b0 e0       	ldi	r27, 0x00	; 0
+ 13e:	ef e3       	ldi	r30, 0x3F	; 63
+ 140:	f0 e0       	ldi	r31, 0x00	; 0
+ 142:	80 81       	ld	r24, Z
+ 144:	81 60       	ori	r24, 0x01	; 1
+ 146:	8c 93       	st	X, r24
+	/* Return data from Data Register */
+	return EEDR;
+ 148:	e0 e4       	ldi	r30, 0x40	; 64
+ 14a:	f0 e0       	ldi	r31, 0x00	; 0
+ 14c:	80 81       	ld	r24, Z
+}
+ 14e:	0f 90       	pop	r0
+ 150:	0f 90       	pop	r0
+ 152:	cf 91       	pop	r28
+ 154:	df 91       	pop	r29
+ 156:	08 95       	ret
+
+00000158 <EEPROM_write_string>:
+
+void EEPROM_write_string(unsigned int uiAddress, unsigned char * ucData, int size) {
+ 158:	df 93       	push	r29
+ 15a:	cf 93       	push	r28
+ 15c:	cd b7       	in	r28, 0x3d	; 61
+ 15e:	de b7       	in	r29, 0x3e	; 62
+ 160:	28 97       	sbiw	r28, 0x08	; 8
+ 162:	0f b6       	in	r0, 0x3f	; 63
+ 164:	f8 94       	cli
+ 166:	de bf       	out	0x3e, r29	; 62
+ 168:	0f be       	out	0x3f, r0	; 63
+ 16a:	cd bf       	out	0x3d, r28	; 61
+ 16c:	9c 83       	std	Y+4, r25	; 0x04
+ 16e:	8b 83       	std	Y+3, r24	; 0x03
+ 170:	7e 83       	std	Y+6, r23	; 0x06
+ 172:	6d 83       	std	Y+5, r22	; 0x05
+ 174:	58 87       	std	Y+8, r21	; 0x08
+ 176:	4f 83       	std	Y+7, r20	; 0x07
+	int i;
+	for(i = 0; i < size; i++) {
+ 178:	1a 82       	std	Y+2, r1	; 0x02
+ 17a:	19 82       	std	Y+1, r1	; 0x01
+ 17c:	18 c0       	rjmp	.+48     	; 0x1ae <EEPROM_write_string+0x56>
+		EEPROM_write(uiAddress+i, ucData[i]);
+ 17e:	29 81       	ldd	r18, Y+1	; 0x01
+ 180:	3a 81       	ldd	r19, Y+2	; 0x02
+ 182:	8b 81       	ldd	r24, Y+3	; 0x03
+ 184:	9c 81       	ldd	r25, Y+4	; 0x04
+ 186:	a9 01       	movw	r20, r18
+ 188:	48 0f       	add	r20, r24
+ 18a:	59 1f       	adc	r21, r25
+ 18c:	29 81       	ldd	r18, Y+1	; 0x01
+ 18e:	3a 81       	ldd	r19, Y+2	; 0x02
+ 190:	8d 81       	ldd	r24, Y+5	; 0x05
+ 192:	9e 81       	ldd	r25, Y+6	; 0x06
+ 194:	fc 01       	movw	r30, r24
+ 196:	e2 0f       	add	r30, r18
+ 198:	f3 1f       	adc	r31, r19
+ 19a:	20 81       	ld	r18, Z
+ 19c:	ca 01       	movw	r24, r20
+ 19e:	62 2f       	mov	r22, r18
+ 1a0:	0e 94 57 00 	call	0xae	; 0xae <EEPROM_write>
+	return EEDR;
+}
+
+void EEPROM_write_string(unsigned int uiAddress, unsigned char * ucData, int size) {
+	int i;
+	for(i = 0; i < size; i++) {
+ 1a4:	89 81       	ldd	r24, Y+1	; 0x01
+ 1a6:	9a 81       	ldd	r25, Y+2	; 0x02
+ 1a8:	01 96       	adiw	r24, 0x01	; 1
+ 1aa:	9a 83       	std	Y+2, r25	; 0x02
+ 1ac:	89 83       	std	Y+1, r24	; 0x01
+ 1ae:	29 81       	ldd	r18, Y+1	; 0x01
+ 1b0:	3a 81       	ldd	r19, Y+2	; 0x02
+ 1b2:	8f 81       	ldd	r24, Y+7	; 0x07
+ 1b4:	98 85       	ldd	r25, Y+8	; 0x08
+ 1b6:	28 17       	cp	r18, r24
+ 1b8:	39 07       	cpc	r19, r25
+ 1ba:	0c f3       	brlt	.-62     	; 0x17e <EEPROM_write_string+0x26>
+		EEPROM_write(uiAddress+i, ucData[i]);
+	}
+}
+ 1bc:	28 96       	adiw	r28, 0x08	; 8
+ 1be:	0f b6       	in	r0, 0x3f	; 63
+ 1c0:	f8 94       	cli
+ 1c2:	de bf       	out	0x3e, r29	; 62
+ 1c4:	0f be       	out	0x3f, r0	; 63
+ 1c6:	cd bf       	out	0x3d, r28	; 61
+ 1c8:	cf 91       	pop	r28
+ 1ca:	df 91       	pop	r29
+ 1cc:	08 95       	ret
+
+000001ce <EEPROM_read_string>:
+
+void EEPROM_read_string(unsigned int uiAddress, unsigned char * ucData, int size) {
+ 1ce:	0f 93       	push	r16
+ 1d0:	1f 93       	push	r17
+ 1d2:	df 93       	push	r29
+ 1d4:	cf 93       	push	r28
+ 1d6:	cd b7       	in	r28, 0x3d	; 61
+ 1d8:	de b7       	in	r29, 0x3e	; 62
+ 1da:	2a 97       	sbiw	r28, 0x0a	; 10
+ 1dc:	0f b6       	in	r0, 0x3f	; 63
+ 1de:	f8 94       	cli
+ 1e0:	de bf       	out	0x3e, r29	; 62
+ 1e2:	0f be       	out	0x3f, r0	; 63
+ 1e4:	cd bf       	out	0x3d, r28	; 61
+ 1e6:	9e 83       	std	Y+6, r25	; 0x06
+ 1e8:	8d 83       	std	Y+5, r24	; 0x05
+ 1ea:	78 87       	std	Y+8, r23	; 0x08
+ 1ec:	6f 83       	std	Y+7, r22	; 0x07
+ 1ee:	5a 87       	std	Y+10, r21	; 0x0a
+ 1f0:	49 87       	std	Y+9, r20	; 0x09
+	int i;
+	unsigned int auxAddress = uiAddress;
+ 1f2:	8d 81       	ldd	r24, Y+5	; 0x05
+ 1f4:	9e 81       	ldd	r25, Y+6	; 0x06
+ 1f6:	9a 83       	std	Y+2, r25	; 0x02
+ 1f8:	89 83       	std	Y+1, r24	; 0x01
+	for(i = 0; i < size; i++) {
+ 1fa:	1c 82       	std	Y+4, r1	; 0x04
+ 1fc:	1b 82       	std	Y+3, r1	; 0x03
+ 1fe:	17 c0       	rjmp	.+46     	; 0x22e <EEPROM_read_string+0x60>
+		ucData[i] = EEPROM_read(auxAddress);
+ 200:	2b 81       	ldd	r18, Y+3	; 0x03
+ 202:	3c 81       	ldd	r19, Y+4	; 0x04
+ 204:	8f 81       	ldd	r24, Y+7	; 0x07
+ 206:	98 85       	ldd	r25, Y+8	; 0x08
+ 208:	8c 01       	movw	r16, r24
+ 20a:	02 0f       	add	r16, r18
+ 20c:	13 1f       	adc	r17, r19
+ 20e:	89 81       	ldd	r24, Y+1	; 0x01
+ 210:	9a 81       	ldd	r25, Y+2	; 0x02
+ 212:	0e 94 87 00 	call	0x10e	; 0x10e <EEPROM_read>
+ 216:	f8 01       	movw	r30, r16
+ 218:	80 83       	st	Z, r24
+		auxAddress ++;
+ 21a:	89 81       	ldd	r24, Y+1	; 0x01
+ 21c:	9a 81       	ldd	r25, Y+2	; 0x02
+ 21e:	01 96       	adiw	r24, 0x01	; 1
+ 220:	9a 83       	std	Y+2, r25	; 0x02
+ 222:	89 83       	std	Y+1, r24	; 0x01
+}
+
+void EEPROM_read_string(unsigned int uiAddress, unsigned char * ucData, int size) {
+	int i;
+	unsigned int auxAddress = uiAddress;
+	for(i = 0; i < size; i++) {
+ 224:	8b 81       	ldd	r24, Y+3	; 0x03
+ 226:	9c 81       	ldd	r25, Y+4	; 0x04
+ 228:	01 96       	adiw	r24, 0x01	; 1
+ 22a:	9c 83       	std	Y+4, r25	; 0x04
+ 22c:	8b 83       	std	Y+3, r24	; 0x03
+ 22e:	2b 81       	ldd	r18, Y+3	; 0x03
+ 230:	3c 81       	ldd	r19, Y+4	; 0x04
+ 232:	89 85       	ldd	r24, Y+9	; 0x09
+ 234:	9a 85       	ldd	r25, Y+10	; 0x0a
+ 236:	28 17       	cp	r18, r24
+ 238:	39 07       	cpc	r19, r25
+ 23a:	14 f3       	brlt	.-60     	; 0x200 <EEPROM_read_string+0x32>
+		ucData[i] = EEPROM_read(auxAddress);
+		auxAddress ++;
+	}
+}
+ 23c:	2a 96       	adiw	r28, 0x0a	; 10
+ 23e:	0f b6       	in	r0, 0x3f	; 63
+ 240:	f8 94       	cli
+ 242:	de bf       	out	0x3e, r29	; 62
+ 244:	0f be       	out	0x3f, r0	; 63
+ 246:	cd bf       	out	0x3d, r28	; 61
+ 248:	cf 91       	pop	r28
+ 24a:	df 91       	pop	r29
+ 24c:	1f 91       	pop	r17
+ 24e:	0f 91       	pop	r16
+ 250:	08 95       	ret
+
+00000252 <EEPROM_write_int>:
+
+void EEPROM_write_int(unsigned int uiAddress, int data) {
+ 252:	df 93       	push	r29
+ 254:	cf 93       	push	r28
+ 256:	cd b7       	in	r28, 0x3d	; 61
+ 258:	de b7       	in	r29, 0x3e	; 62
+ 25a:	2a 97       	sbiw	r28, 0x0a	; 10
+ 25c:	0f b6       	in	r0, 0x3f	; 63
+ 25e:	f8 94       	cli
+ 260:	de bf       	out	0x3e, r29	; 62
+ 262:	0f be       	out	0x3f, r0	; 63
+ 264:	cd bf       	out	0x3d, r28	; 61
+ 266:	98 87       	std	Y+8, r25	; 0x08
+ 268:	8f 83       	std	Y+7, r24	; 0x07
+ 26a:	7a 87       	std	Y+10, r23	; 0x0a
+ 26c:	69 87       	std	Y+9, r22	; 0x09
+	char dataString[4];
+	int i;
+	itoa(data, dataString, 10);
+ 26e:	89 85       	ldd	r24, Y+9	; 0x09
+ 270:	9a 85       	ldd	r25, Y+10	; 0x0a
+ 272:	9e 01       	movw	r18, r28
+ 274:	2d 5f       	subi	r18, 0xFD	; 253
+ 276:	3f 4f       	sbci	r19, 0xFF	; 255
+ 278:	b9 01       	movw	r22, r18
+ 27a:	4a e0       	ldi	r20, 0x0A	; 10
+ 27c:	50 e0       	ldi	r21, 0x00	; 0
+ 27e:	0e 94 24 03 	call	0x648	; 0x648 <itoa>
+	for(i = 0; i < 4; i++) {
+ 282:	1a 82       	std	Y+2, r1	; 0x02
+ 284:	19 82       	std	Y+1, r1	; 0x01
+ 286:	18 c0       	rjmp	.+48     	; 0x2b8 <EEPROM_write_int+0x66>
+		EEPROM_write(uiAddress+i,dataString[i]);
+ 288:	29 81       	ldd	r18, Y+1	; 0x01
+ 28a:	3a 81       	ldd	r19, Y+2	; 0x02
+ 28c:	8f 81       	ldd	r24, Y+7	; 0x07
+ 28e:	98 85       	ldd	r25, Y+8	; 0x08
+ 290:	a9 01       	movw	r20, r18
+ 292:	48 0f       	add	r20, r24
+ 294:	59 1f       	adc	r21, r25
+ 296:	29 81       	ldd	r18, Y+1	; 0x01
+ 298:	3a 81       	ldd	r19, Y+2	; 0x02
+ 29a:	ce 01       	movw	r24, r28
+ 29c:	03 96       	adiw	r24, 0x03	; 3
+ 29e:	fc 01       	movw	r30, r24
+ 2a0:	e2 0f       	add	r30, r18
+ 2a2:	f3 1f       	adc	r31, r19
+ 2a4:	20 81       	ld	r18, Z
+ 2a6:	ca 01       	movw	r24, r20
+ 2a8:	62 2f       	mov	r22, r18
+ 2aa:	0e 94 57 00 	call	0xae	; 0xae <EEPROM_write>
+
+void EEPROM_write_int(unsigned int uiAddress, int data) {
+	char dataString[4];
+	int i;
+	itoa(data, dataString, 10);
+	for(i = 0; i < 4; i++) {
+ 2ae:	89 81       	ldd	r24, Y+1	; 0x01
+ 2b0:	9a 81       	ldd	r25, Y+2	; 0x02
+ 2b2:	01 96       	adiw	r24, 0x01	; 1
+ 2b4:	9a 83       	std	Y+2, r25	; 0x02
+ 2b6:	89 83       	std	Y+1, r24	; 0x01
+ 2b8:	89 81       	ldd	r24, Y+1	; 0x01
+ 2ba:	9a 81       	ldd	r25, Y+2	; 0x02
+ 2bc:	84 30       	cpi	r24, 0x04	; 4
+ 2be:	91 05       	cpc	r25, r1
+ 2c0:	1c f3       	brlt	.-58     	; 0x288 <EEPROM_write_int+0x36>
+		EEPROM_write(uiAddress+i,dataString[i]);
+	}
+}
+ 2c2:	2a 96       	adiw	r28, 0x0a	; 10
+ 2c4:	0f b6       	in	r0, 0x3f	; 63
+ 2c6:	f8 94       	cli
+ 2c8:	de bf       	out	0x3e, r29	; 62
+ 2ca:	0f be       	out	0x3f, r0	; 63
+ 2cc:	cd bf       	out	0x3d, r28	; 61
+ 2ce:	cf 91       	pop	r28
+ 2d0:	df 91       	pop	r29
+ 2d2:	08 95       	ret
+
+000002d4 <EEPROM_read_int>:
+
+int EEPROM_read_int(unsigned int uiAddress) {
+ 2d4:	0f 93       	push	r16
+ 2d6:	1f 93       	push	r17
+ 2d8:	df 93       	push	r29
+ 2da:	cf 93       	push	r28
+ 2dc:	cd b7       	in	r28, 0x3d	; 61
+ 2de:	de b7       	in	r29, 0x3e	; 62
+ 2e0:	28 97       	sbiw	r28, 0x08	; 8
+ 2e2:	0f b6       	in	r0, 0x3f	; 63
+ 2e4:	f8 94       	cli
+ 2e6:	de bf       	out	0x3e, r29	; 62
+ 2e8:	0f be       	out	0x3f, r0	; 63
+ 2ea:	cd bf       	out	0x3d, r28	; 61
+ 2ec:	98 87       	std	Y+8, r25	; 0x08
+ 2ee:	8f 83       	std	Y+7, r24	; 0x07
+	char dataString[4];
+	int i;
+	for(i = 0; i < 4; i++) {
+ 2f0:	1a 82       	std	Y+2, r1	; 0x02
+ 2f2:	19 82       	std	Y+1, r1	; 0x01
+ 2f4:	16 c0       	rjmp	.+44     	; 0x322 <EEPROM_read_int+0x4e>
+		dataString[i] = EEPROM_read(uiAddress+i);
+ 2f6:	09 81       	ldd	r16, Y+1	; 0x01
+ 2f8:	1a 81       	ldd	r17, Y+2	; 0x02
+ 2fa:	29 81       	ldd	r18, Y+1	; 0x01
+ 2fc:	3a 81       	ldd	r19, Y+2	; 0x02
+ 2fe:	8f 81       	ldd	r24, Y+7	; 0x07
+ 300:	98 85       	ldd	r25, Y+8	; 0x08
+ 302:	82 0f       	add	r24, r18
+ 304:	93 1f       	adc	r25, r19
+ 306:	0e 94 87 00 	call	0x10e	; 0x10e <EEPROM_read>
+ 30a:	28 2f       	mov	r18, r24
+ 30c:	ce 01       	movw	r24, r28
+ 30e:	03 96       	adiw	r24, 0x03	; 3
+ 310:	fc 01       	movw	r30, r24
+ 312:	e0 0f       	add	r30, r16
+ 314:	f1 1f       	adc	r31, r17
+ 316:	20 83       	st	Z, r18
+}
+
+int EEPROM_read_int(unsigned int uiAddress) {
+	char dataString[4];
+	int i;
+	for(i = 0; i < 4; i++) {
+ 318:	89 81       	ldd	r24, Y+1	; 0x01
+ 31a:	9a 81       	ldd	r25, Y+2	; 0x02
+ 31c:	01 96       	adiw	r24, 0x01	; 1
+ 31e:	9a 83       	std	Y+2, r25	; 0x02
+ 320:	89 83       	std	Y+1, r24	; 0x01
+ 322:	89 81       	ldd	r24, Y+1	; 0x01
+ 324:	9a 81       	ldd	r25, Y+2	; 0x02
+ 326:	84 30       	cpi	r24, 0x04	; 4
+ 328:	91 05       	cpc	r25, r1
+ 32a:	2c f3       	brlt	.-54     	; 0x2f6 <EEPROM_read_int+0x22>
+		dataString[i] = EEPROM_read(uiAddress+i);
+	}
+	return atoi(dataString);
+ 32c:	ce 01       	movw	r24, r28
+ 32e:	03 96       	adiw	r24, 0x03	; 3
+ 330:	0e 94 06 03 	call	0x60c	; 0x60c <atoi>
+}
+ 334:	28 96       	adiw	r28, 0x08	; 8
+ 336:	0f b6       	in	r0, 0x3f	; 63
+ 338:	f8 94       	cli
+ 33a:	de bf       	out	0x3e, r29	; 62
+ 33c:	0f be       	out	0x3f, r0	; 63
+ 33e:	cd bf       	out	0x3d, r28	; 61
+ 340:	cf 91       	pop	r28
+ 342:	df 91       	pop	r29
+ 344:	1f 91       	pop	r17
+ 346:	0f 91       	pop	r16
+ 348:	08 95       	ret
+
+0000034a <configureLeds>:
+#include "Leds.h"
+
+void configureLeds() {
+ 34a:	df 93       	push	r29
+ 34c:	cf 93       	push	r28
+ 34e:	cd b7       	in	r28, 0x3d	; 61
+ 350:	de b7       	in	r29, 0x3e	; 62
+	LEDS_ADDR = OUTPUT;
+ 352:	e4 e2       	ldi	r30, 0x24	; 36
+ 354:	f0 e0       	ldi	r31, 0x00	; 0
+ 356:	8f ef       	ldi	r24, 0xFF	; 255
+ 358:	80 83       	st	Z, r24
+	LEDS_PORT = LEDS_OFF;
+ 35a:	e5 e2       	ldi	r30, 0x25	; 37
+ 35c:	f0 e0       	ldi	r31, 0x00	; 0
+ 35e:	8f ef       	ldi	r24, 0xFF	; 255
+ 360:	80 83       	st	Z, r24
+}
+ 362:	cf 91       	pop	r28
+ 364:	df 91       	pop	r29
+ 366:	08 95       	ret
+
+00000368 <turnOn>:
+
+void turnOn(int i) {
+ 368:	df 93       	push	r29
+ 36a:	cf 93       	push	r28
+ 36c:	00 d0       	rcall	.+0      	; 0x36e <turnOn+0x6>
+ 36e:	00 d0       	rcall	.+0      	; 0x370 <turnOn+0x8>
+ 370:	00 d0       	rcall	.+0      	; 0x372 <turnOn+0xa>
+ 372:	cd b7       	in	r28, 0x3d	; 61
+ 374:	de b7       	in	r29, 0x3e	; 62
+ 376:	9e 83       	std	Y+6, r25	; 0x06
+ 378:	8d 83       	std	Y+5, r24	; 0x05
+	int x = 0xFE;
+ 37a:	8e ef       	ldi	r24, 0xFE	; 254
+ 37c:	90 e0       	ldi	r25, 0x00	; 0
+ 37e:	9c 83       	std	Y+4, r25	; 0x04
+ 380:	8b 83       	std	Y+3, r24	; 0x03
+	int k;
+	for(k = 0; k < i; k++) {
+ 382:	1a 82       	std	Y+2, r1	; 0x02
+ 384:	19 82       	std	Y+1, r1	; 0x01
+ 386:	10 c0       	rjmp	.+32     	; 0x3a8 <turnOn+0x40>
+		x = x << 1;
+ 388:	8b 81       	ldd	r24, Y+3	; 0x03
+ 38a:	9c 81       	ldd	r25, Y+4	; 0x04
+ 38c:	88 0f       	add	r24, r24
+ 38e:	99 1f       	adc	r25, r25
+ 390:	9c 83       	std	Y+4, r25	; 0x04
+ 392:	8b 83       	std	Y+3, r24	; 0x03
+		x = x | 0x01;
+ 394:	8b 81       	ldd	r24, Y+3	; 0x03
+ 396:	9c 81       	ldd	r25, Y+4	; 0x04
+ 398:	81 60       	ori	r24, 0x01	; 1
+ 39a:	9c 83       	std	Y+4, r25	; 0x04
+ 39c:	8b 83       	std	Y+3, r24	; 0x03
+}
+
+void turnOn(int i) {
+	int x = 0xFE;
+	int k;
+	for(k = 0; k < i; k++) {
+ 39e:	89 81       	ldd	r24, Y+1	; 0x01
+ 3a0:	9a 81       	ldd	r25, Y+2	; 0x02
+ 3a2:	01 96       	adiw	r24, 0x01	; 1
+ 3a4:	9a 83       	std	Y+2, r25	; 0x02
+ 3a6:	89 83       	std	Y+1, r24	; 0x01
+ 3a8:	29 81       	ldd	r18, Y+1	; 0x01
+ 3aa:	3a 81       	ldd	r19, Y+2	; 0x02
+ 3ac:	8d 81       	ldd	r24, Y+5	; 0x05
+ 3ae:	9e 81       	ldd	r25, Y+6	; 0x06
+ 3b0:	28 17       	cp	r18, r24
+ 3b2:	39 07       	cpc	r19, r25
+ 3b4:	4c f3       	brlt	.-46     	; 0x388 <turnOn+0x20>
+		x = x << 1;
+		x = x | 0x01;
+	}
+	LEDS_PORT = LEDS_PORT & x;
+ 3b6:	a5 e2       	ldi	r26, 0x25	; 37
+ 3b8:	b0 e0       	ldi	r27, 0x00	; 0
+ 3ba:	e5 e2       	ldi	r30, 0x25	; 37
+ 3bc:	f0 e0       	ldi	r31, 0x00	; 0
+ 3be:	80 81       	ld	r24, Z
+ 3c0:	98 2f       	mov	r25, r24
+ 3c2:	8b 81       	ldd	r24, Y+3	; 0x03
+ 3c4:	89 23       	and	r24, r25
+ 3c6:	8c 93       	st	X, r24
+}
+ 3c8:	26 96       	adiw	r28, 0x06	; 6
+ 3ca:	0f b6       	in	r0, 0x3f	; 63
+ 3cc:	f8 94       	cli
+ 3ce:	de bf       	out	0x3e, r29	; 62
+ 3d0:	0f be       	out	0x3f, r0	; 63
+ 3d2:	cd bf       	out	0x3d, r28	; 61
+ 3d4:	cf 91       	pop	r28
+ 3d6:	df 91       	pop	r29
+ 3d8:	08 95       	ret
+
+000003da <turnOff>:
+
+void turnOff(int i) {
+ 3da:	df 93       	push	r29
+ 3dc:	cf 93       	push	r28
+ 3de:	00 d0       	rcall	.+0      	; 0x3e0 <turnOff+0x6>
+ 3e0:	00 d0       	rcall	.+0      	; 0x3e2 <turnOff+0x8>
+ 3e2:	cd b7       	in	r28, 0x3d	; 61
+ 3e4:	de b7       	in	r29, 0x3e	; 62
+ 3e6:	9c 83       	std	Y+4, r25	; 0x04
+ 3e8:	8b 83       	std	Y+3, r24	; 0x03
+	int x = 0x01;
+ 3ea:	81 e0       	ldi	r24, 0x01	; 1
+ 3ec:	90 e0       	ldi	r25, 0x00	; 0
+ 3ee:	9a 83       	std	Y+2, r25	; 0x02
+ 3f0:	89 83       	std	Y+1, r24	; 0x01
+	x = x << i;
+ 3f2:	89 81       	ldd	r24, Y+1	; 0x01
+ 3f4:	9a 81       	ldd	r25, Y+2	; 0x02
+ 3f6:	0b 80       	ldd	r0, Y+3	; 0x03
+ 3f8:	02 c0       	rjmp	.+4      	; 0x3fe <turnOff+0x24>
+ 3fa:	88 0f       	add	r24, r24
+ 3fc:	99 1f       	adc	r25, r25
+ 3fe:	0a 94       	dec	r0
+ 400:	e2 f7       	brpl	.-8      	; 0x3fa <turnOff+0x20>
+ 402:	9a 83       	std	Y+2, r25	; 0x02
+ 404:	89 83       	std	Y+1, r24	; 0x01
+	LEDS_PORT = LEDS_PORT | x;
+ 406:	a5 e2       	ldi	r26, 0x25	; 37
+ 408:	b0 e0       	ldi	r27, 0x00	; 0
+ 40a:	e5 e2       	ldi	r30, 0x25	; 37
+ 40c:	f0 e0       	ldi	r31, 0x00	; 0
+ 40e:	80 81       	ld	r24, Z
+ 410:	98 2f       	mov	r25, r24
+ 412:	89 81       	ldd	r24, Y+1	; 0x01
+ 414:	89 2b       	or	r24, r25
+ 416:	8c 93       	st	X, r24
+}
+ 418:	0f 90       	pop	r0
+ 41a:	0f 90       	pop	r0
+ 41c:	0f 90       	pop	r0
+ 41e:	0f 90       	pop	r0
+ 420:	cf 91       	pop	r28
+ 422:	df 91       	pop	r29
+ 424:	08 95       	ret
+
+00000426 <toggle>:
+
+void toggle(int i) {
+ 426:	df 93       	push	r29
+ 428:	cf 93       	push	r28
+ 42a:	00 d0       	rcall	.+0      	; 0x42c <toggle+0x6>
+ 42c:	00 d0       	rcall	.+0      	; 0x42e <toggle+0x8>
+ 42e:	cd b7       	in	r28, 0x3d	; 61
+ 430:	de b7       	in	r29, 0x3e	; 62
+ 432:	9c 83       	std	Y+4, r25	; 0x04
+ 434:	8b 83       	std	Y+3, r24	; 0x03
+	int x = 0x01;
+ 436:	81 e0       	ldi	r24, 0x01	; 1
+ 438:	90 e0       	ldi	r25, 0x00	; 0
+ 43a:	9a 83       	std	Y+2, r25	; 0x02
+ 43c:	89 83       	std	Y+1, r24	; 0x01
+	x = x << i;
+ 43e:	89 81       	ldd	r24, Y+1	; 0x01
+ 440:	9a 81       	ldd	r25, Y+2	; 0x02
+ 442:	0b 80       	ldd	r0, Y+3	; 0x03
+ 444:	02 c0       	rjmp	.+4      	; 0x44a <toggle+0x24>
+ 446:	88 0f       	add	r24, r24
+ 448:	99 1f       	adc	r25, r25
+ 44a:	0a 94       	dec	r0
+ 44c:	e2 f7       	brpl	.-8      	; 0x446 <toggle+0x20>
+ 44e:	9a 83       	std	Y+2, r25	; 0x02
+ 450:	89 83       	std	Y+1, r24	; 0x01
+	LEDS_PORT = LEDS_PORT ^ x;
+ 452:	a5 e2       	ldi	r26, 0x25	; 37
+ 454:	b0 e0       	ldi	r27, 0x00	; 0
+ 456:	e5 e2       	ldi	r30, 0x25	; 37
+ 458:	f0 e0       	ldi	r31, 0x00	; 0
+ 45a:	80 81       	ld	r24, Z
+ 45c:	98 2f       	mov	r25, r24
+ 45e:	89 81       	ldd	r24, Y+1	; 0x01
+ 460:	89 27       	eor	r24, r25
+ 462:	8c 93       	st	X, r24
+}
+ 464:	0f 90       	pop	r0
+ 466:	0f 90       	pop	r0
+ 468:	0f 90       	pop	r0
+ 46a:	0f 90       	pop	r0
+ 46c:	cf 91       	pop	r28
+ 46e:	df 91       	pop	r29
+ 470:	08 95       	ret
+
+00000472 <ledsOff>:
+
+void ledsOff() {
+ 472:	df 93       	push	r29
+ 474:	cf 93       	push	r28
+ 476:	cd b7       	in	r28, 0x3d	; 61
+ 478:	de b7       	in	r29, 0x3e	; 62
+	LEDS_PORT = LEDS_OFF;
+ 47a:	e5 e2       	ldi	r30, 0x25	; 37
+ 47c:	f0 e0       	ldi	r31, 0x00	; 0
+ 47e:	8f ef       	ldi	r24, 0xFF	; 255
+ 480:	80 83       	st	Z, r24
+}
+ 482:	cf 91       	pop	r28
+ 484:	df 91       	pop	r29
+ 486:	08 95       	ret
+
+00000488 <ledsOn>:
+
+void ledsOn() {
+ 488:	df 93       	push	r29
+ 48a:	cf 93       	push	r28
+ 48c:	cd b7       	in	r28, 0x3d	; 61
+ 48e:	de b7       	in	r29, 0x3e	; 62
+	LEDS_PORT = LEDS_ON;
+ 490:	e5 e2       	ldi	r30, 0x25	; 37
+ 492:	f0 e0       	ldi	r31, 0x00	; 0
+ 494:	10 82       	st	Z, r1
+}
+ 496:	cf 91       	pop	r28
+ 498:	df 91       	pop	r29
+ 49a:	08 95       	ret
+
+0000049c <setLeds>:
+
+void setLeds(int leds) {
+ 49c:	df 93       	push	r29
+ 49e:	cf 93       	push	r28
+ 4a0:	00 d0       	rcall	.+0      	; 0x4a2 <setLeds+0x6>
+ 4a2:	cd b7       	in	r28, 0x3d	; 61
+ 4a4:	de b7       	in	r29, 0x3e	; 62
+ 4a6:	9a 83       	std	Y+2, r25	; 0x02
+ 4a8:	89 83       	std	Y+1, r24	; 0x01
+	LEDS_PORT = leds;
+ 4aa:	e5 e2       	ldi	r30, 0x25	; 37
+ 4ac:	f0 e0       	ldi	r31, 0x00	; 0
+ 4ae:	89 81       	ldd	r24, Y+1	; 0x01
+ 4b0:	80 83       	st	Z, r24
+}
+ 4b2:	0f 90       	pop	r0
+ 4b4:	0f 90       	pop	r0
+ 4b6:	cf 91       	pop	r28
+ 4b8:	df 91       	pop	r29
+ 4ba:	08 95       	ret
+
+000004bc <configureSwitches>:
+#include "Switches.h"
+
+void configureSwitches() {
+ 4bc:	df 93       	push	r29
+ 4be:	cf 93       	push	r28
+ 4c0:	cd b7       	in	r28, 0x3d	; 61
+ 4c2:	de b7       	in	r29, 0x3e	; 62
+	SWS_ADDR = INPUT;
+ 4c4:	e1 e2       	ldi	r30, 0x21	; 33
+ 4c6:	f0 e0       	ldi	r31, 0x00	; 0
+ 4c8:	10 82       	st	Z, r1
+
+//	SWS_PORT = (1<<0)|(1<<1)|(1<<2);
+
+//	SREG
+	/* Habilito PCINT 0 1 y 2 */
+	PCICR = (1<<PCIE0);
+ 4ca:	e8 e6       	ldi	r30, 0x68	; 104
+ 4cc:	f0 e0       	ldi	r31, 0x00	; 0
+ 4ce:	81 e0       	ldi	r24, 0x01	; 1
+ 4d0:	80 83       	st	Z, r24
+	PCMSK0 = 0xFF;
+ 4d2:	eb e6       	ldi	r30, 0x6B	; 107
+ 4d4:	f0 e0       	ldi	r31, 0x00	; 0
+ 4d6:	8f ef       	ldi	r24, 0xFF	; 255
+ 4d8:	80 83       	st	Z, r24
+
+	sei();
+ 4da:	78 94       	sei
+}
+ 4dc:	cf 91       	pop	r28
+ 4de:	df 91       	pop	r29
+ 4e0:	08 95       	ret
+
+000004e2 <configureTimer1>:
+#include "Timer1.h"
+
+void configureTimer1() {
+ 4e2:	df 93       	push	r29
+ 4e4:	cf 93       	push	r28
+ 4e6:	cd b7       	in	r28, 0x3d	; 61
+ 4e8:	de b7       	in	r29, 0x3e	; 62
+		 * TCNT es el valor del timer (lo que se va incrementando)
+		 * OCR es contra lo que se compara
+		 */
+
+		// Hago que haga el clear cuando machea con A
+		TCCR1A = (1<<COM1A1);
+ 4ea:	e0 e8       	ldi	r30, 0x80	; 128
+ 4ec:	f0 e0       	ldi	r31, 0x00	; 0
+ 4ee:	80 e8       	ldi	r24, 0x80	; 128
+ 4f0:	80 83       	st	Z, r24
+
+		// Seteo el prescaler de 64
+		TCCR1B = (1<<CS10) | (1<<CS11) | (1<<WGM12);
+ 4f2:	e1 e8       	ldi	r30, 0x81	; 129
+ 4f4:	f0 e0       	ldi	r31, 0x00	; 0
+ 4f6:	8b e0       	ldi	r24, 0x0B	; 11
+ 4f8:	80 83       	st	Z, r24
+		// Fuerzo a que se compare con A
+	//	TCCR1C = (1<<FOC1A);
+
+
+		// Seteo el output compare en 15625 = 0x3D09
+		OCR1AH = 0x3D;
+ 4fa:	e9 e8       	ldi	r30, 0x89	; 137
+ 4fc:	f0 e0       	ldi	r31, 0x00	; 0
+ 4fe:	8d e3       	ldi	r24, 0x3D	; 61
+ 500:	80 83       	st	Z, r24
+		OCR1AL = 0x09;
+ 502:	e8 e8       	ldi	r30, 0x88	; 136
+ 504:	f0 e0       	ldi	r31, 0x00	; 0
+ 506:	89 e0       	ldi	r24, 0x09	; 9
+ 508:	80 83       	st	Z, r24
+
+		// Habilito el RTC1 y habilito que se compare con el OCR1AH
+		TIMSK1 = (1<<OCIE1A);
+ 50a:	ef e6       	ldi	r30, 0x6F	; 111
+ 50c:	f0 e0       	ldi	r31, 0x00	; 0
+ 50e:	82 e0       	ldi	r24, 0x02	; 2
+ 510:	80 83       	st	Z, r24
+
+		sei();
+ 512:	78 94       	sei
+}
+ 514:	cf 91       	pop	r28
+ 516:	df 91       	pop	r29
+ 518:	08 95       	ret
+
+0000051a <USART_Init>:
+#include "USART.h"
+
+void USART_Init( unsigned int baud ) {
+ 51a:	df 93       	push	r29
+ 51c:	cf 93       	push	r28
+ 51e:	00 d0       	rcall	.+0      	; 0x520 <USART_Init+0x6>
+ 520:	cd b7       	in	r28, 0x3d	; 61
+ 522:	de b7       	in	r29, 0x3e	; 62
+ 524:	9a 83       	std	Y+2, r25	; 0x02
+ 526:	89 83       	std	Y+1, r24	; 0x01
+	/* Set baud rate */
+
+	UBRR0H = (unsigned char) (baud>>8);
+ 528:	e5 ec       	ldi	r30, 0xC5	; 197
+ 52a:	f0 e0       	ldi	r31, 0x00	; 0
+ 52c:	89 81       	ldd	r24, Y+1	; 0x01
+ 52e:	9a 81       	ldd	r25, Y+2	; 0x02
+ 530:	89 2f       	mov	r24, r25
+ 532:	99 27       	eor	r25, r25
+ 534:	80 83       	st	Z, r24
+	UBRR0L = (unsigned char) baud;
+ 536:	e4 ec       	ldi	r30, 0xC4	; 196
+ 538:	f0 e0       	ldi	r31, 0x00	; 0
+ 53a:	89 81       	ldd	r24, Y+1	; 0x01
+ 53c:	80 83       	st	Z, r24
+
+	UCSR0B = (1 << RXEN0) | (1 << TXEN0);      // Enable receiver and transmitter
+ 53e:	e1 ec       	ldi	r30, 0xC1	; 193
+ 540:	f0 e0       	ldi	r31, 0x00	; 0
+ 542:	88 e1       	ldi	r24, 0x18	; 24
+ 544:	80 83       	st	Z, r24
+	UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);    // Set frame: 8data, 1 stp
+ 546:	e2 ec       	ldi	r30, 0xC2	; 194
+ 548:	f0 e0       	ldi	r31, 0x00	; 0
+ 54a:	86 e0       	ldi	r24, 0x06	; 6
+ 54c:	80 83       	st	Z, r24
+}
+ 54e:	0f 90       	pop	r0
+ 550:	0f 90       	pop	r0
+ 552:	cf 91       	pop	r28
+ 554:	df 91       	pop	r29
+ 556:	08 95       	ret
+
+00000558 <USART_Transmit>:
+
+void USART_Transmit( unsigned char data ) {
+ 558:	df 93       	push	r29
+ 55a:	cf 93       	push	r28
+ 55c:	0f 92       	push	r0
+ 55e:	cd b7       	in	r28, 0x3d	; 61
+ 560:	de b7       	in	r29, 0x3e	; 62
+ 562:	89 83       	std	Y+1, r24	; 0x01
+	/* Wait for empty transmit buffer */
+	while ( !( UCSR0A & (1<<UDRE0)) )
+ 564:	e0 ec       	ldi	r30, 0xC0	; 192
+ 566:	f0 e0       	ldi	r31, 0x00	; 0
+ 568:	80 81       	ld	r24, Z
+ 56a:	88 2f       	mov	r24, r24
+ 56c:	90 e0       	ldi	r25, 0x00	; 0
+ 56e:	80 72       	andi	r24, 0x20	; 32
+ 570:	90 70       	andi	r25, 0x00	; 0
+ 572:	00 97       	sbiw	r24, 0x00	; 0
+ 574:	b9 f3       	breq	.-18     	; 0x564 <USART_Transmit+0xc>
+	;
+	/* Put data into buffer, sends the data */
+	UDR0 = data;
+ 576:	e6 ec       	ldi	r30, 0xC6	; 198
+ 578:	f0 e0       	ldi	r31, 0x00	; 0
+ 57a:	89 81       	ldd	r24, Y+1	; 0x01
+ 57c:	80 83       	st	Z, r24
+}
+ 57e:	0f 90       	pop	r0
+ 580:	cf 91       	pop	r28
+ 582:	df 91       	pop	r29
+ 584:	08 95       	ret
+
+00000586 <USART_Receive>:
+
+
+unsigned char USART_Receive( void ) {
+ 586:	df 93       	push	r29
+ 588:	cf 93       	push	r28
+ 58a:	cd b7       	in	r28, 0x3d	; 61
+ 58c:	de b7       	in	r29, 0x3e	; 62
+//	char str[100];
+//	sprintf(str,"\nbaud: %d\t UBRR0H: %d\t UBRR0L: %d\t MYUBRR; %d\r\n", myBaud, myUBRR0H, myUBRR0L, MYUBRR);
+//	USART_SendString(str);
+	/* Wait for data to be received */
+	while ( !(UCSR0A & (1<<RXC0)) );
+ 58e:	e0 ec       	ldi	r30, 0xC0	; 192
+ 590:	f0 e0       	ldi	r31, 0x00	; 0
+ 592:	80 81       	ld	r24, Z
+ 594:	88 23       	and	r24, r24
+ 596:	dc f7       	brge	.-10     	; 0x58e <USART_Receive+0x8>
+
+	/* Get and return received data from buffer */
+	return UDR0;
+ 598:	e6 ec       	ldi	r30, 0xC6	; 198
+ 59a:	f0 e0       	ldi	r31, 0x00	; 0
+ 59c:	80 81       	ld	r24, Z
+}
+ 59e:	cf 91       	pop	r28
+ 5a0:	df 91       	pop	r29
+ 5a2:	08 95       	ret
+
+000005a4 <USART_SendString>:
+
+void USART_SendString(char * str) {
+ 5a4:	df 93       	push	r29
+ 5a6:	cf 93       	push	r28
+ 5a8:	00 d0       	rcall	.+0      	; 0x5aa <USART_SendString+0x6>
+ 5aa:	00 d0       	rcall	.+0      	; 0x5ac <USART_SendString+0x8>
+ 5ac:	cd b7       	in	r28, 0x3d	; 61
+ 5ae:	de b7       	in	r29, 0x3e	; 62
+ 5b0:	9c 83       	std	Y+4, r25	; 0x04
+ 5b2:	8b 83       	std	Y+3, r24	; 0x03
+	int i;
+	for(i = 0; str[i] != '\0'; i++) {
+ 5b4:	1a 82       	std	Y+2, r1	; 0x02
+ 5b6:	19 82       	std	Y+1, r1	; 0x01
+ 5b8:	0f c0       	rjmp	.+30     	; 0x5d8 <USART_SendString+0x34>
+		USART_Transmit(str[i]);
+ 5ba:	29 81       	ldd	r18, Y+1	; 0x01
+ 5bc:	3a 81       	ldd	r19, Y+2	; 0x02
+ 5be:	8b 81       	ldd	r24, Y+3	; 0x03
+ 5c0:	9c 81       	ldd	r25, Y+4	; 0x04
+ 5c2:	fc 01       	movw	r30, r24
+ 5c4:	e2 0f       	add	r30, r18
+ 5c6:	f3 1f       	adc	r31, r19
+ 5c8:	80 81       	ld	r24, Z
+ 5ca:	0e 94 ac 02 	call	0x558	; 0x558 <USART_Transmit>
+	return UDR0;
+}
+
+void USART_SendString(char * str) {
+	int i;
+	for(i = 0; str[i] != '\0'; i++) {
+ 5ce:	89 81       	ldd	r24, Y+1	; 0x01
+ 5d0:	9a 81       	ldd	r25, Y+2	; 0x02
+ 5d2:	01 96       	adiw	r24, 0x01	; 1
+ 5d4:	9a 83       	std	Y+2, r25	; 0x02
+ 5d6:	89 83       	std	Y+1, r24	; 0x01
+ 5d8:	29 81       	ldd	r18, Y+1	; 0x01
+ 5da:	3a 81       	ldd	r19, Y+2	; 0x02
+ 5dc:	8b 81       	ldd	r24, Y+3	; 0x03
+ 5de:	9c 81       	ldd	r25, Y+4	; 0x04
+ 5e0:	fc 01       	movw	r30, r24
+ 5e2:	e2 0f       	add	r30, r18
+ 5e4:	f3 1f       	adc	r31, r19
+ 5e6:	80 81       	ld	r24, Z
+ 5e8:	88 23       	and	r24, r24
+ 5ea:	39 f7       	brne	.-50     	; 0x5ba <USART_SendString+0x16>
+		USART_Transmit(str[i]);
+	}
+}
+ 5ec:	0f 90       	pop	r0
+ 5ee:	0f 90       	pop	r0
+ 5f0:	0f 90       	pop	r0
+ 5f2:	0f 90       	pop	r0
+ 5f4:	cf 91       	pop	r28
+ 5f6:	df 91       	pop	r29
+ 5f8:	08 95       	ret
+
+000005fa <main>:
+#include "main.h"
+
+int main() {
+ 5fa:	df 93       	push	r29
+ 5fc:	cf 93       	push	r28
+ 5fe:	cd b7       	in	r28, 0x3d	; 61
+ 600:	de b7       	in	r29, 0x3e	; 62
+ 602:	80 e0       	ldi	r24, 0x00	; 0
+ 604:	90 e0       	ldi	r25, 0x00	; 0
+}
+ 606:	cf 91       	pop	r28
+ 608:	df 91       	pop	r29
+ 60a:	08 95       	ret
+
+0000060c <atoi>:
+ 60c:	fc 01       	movw	r30, r24
+ 60e:	88 27       	eor	r24, r24
+ 610:	99 27       	eor	r25, r25
+ 612:	e8 94       	clt
+ 614:	21 91       	ld	r18, Z+
+ 616:	20 32       	cpi	r18, 0x20	; 32
+ 618:	e9 f3       	breq	.-6      	; 0x614 <atoi+0x8>
+ 61a:	29 30       	cpi	r18, 0x09	; 9
+ 61c:	10 f0       	brcs	.+4      	; 0x622 <atoi+0x16>
+ 61e:	2e 30       	cpi	r18, 0x0E	; 14
+ 620:	c8 f3       	brcs	.-14     	; 0x614 <atoi+0x8>
+ 622:	2b 32       	cpi	r18, 0x2B	; 43
+ 624:	41 f0       	breq	.+16     	; 0x636 <atoi+0x2a>
+ 626:	2d 32       	cpi	r18, 0x2D	; 45
+ 628:	39 f4       	brne	.+14     	; 0x638 <atoi+0x2c>
+ 62a:	68 94       	set
+ 62c:	04 c0       	rjmp	.+8      	; 0x636 <atoi+0x2a>
+ 62e:	0e 94 45 03 	call	0x68a	; 0x68a <__mulhi_const_10>
+ 632:	82 0f       	add	r24, r18
+ 634:	91 1d       	adc	r25, r1
+ 636:	21 91       	ld	r18, Z+
+ 638:	20 53       	subi	r18, 0x30	; 48
+ 63a:	2a 30       	cpi	r18, 0x0A	; 10
+ 63c:	c0 f3       	brcs	.-16     	; 0x62e <atoi+0x22>
+ 63e:	1e f4       	brtc	.+6      	; 0x646 <atoi+0x3a>
+ 640:	90 95       	com	r25
+ 642:	81 95       	neg	r24
+ 644:	9f 4f       	sbci	r25, 0xFF	; 255
+ 646:	08 95       	ret
+
+00000648 <itoa>:
+ 648:	fb 01       	movw	r30, r22
+ 64a:	9f 01       	movw	r18, r30
+ 64c:	e8 94       	clt
+ 64e:	42 30       	cpi	r20, 0x02	; 2
+ 650:	c4 f0       	brlt	.+48     	; 0x682 <itoa+0x3a>
+ 652:	45 32       	cpi	r20, 0x25	; 37
+ 654:	b4 f4       	brge	.+44     	; 0x682 <itoa+0x3a>
+ 656:	4a 30       	cpi	r20, 0x0A	; 10
+ 658:	29 f4       	brne	.+10     	; 0x664 <itoa+0x1c>
+ 65a:	97 fb       	bst	r25, 7
+ 65c:	1e f4       	brtc	.+6      	; 0x664 <itoa+0x1c>
+ 65e:	90 95       	com	r25
+ 660:	81 95       	neg	r24
+ 662:	9f 4f       	sbci	r25, 0xFF	; 255
+ 664:	64 2f       	mov	r22, r20
+ 666:	77 27       	eor	r23, r23
+ 668:	0e 94 5d 03 	call	0x6ba	; 0x6ba <__udivmodhi4>
+ 66c:	80 5d       	subi	r24, 0xD0	; 208
+ 66e:	8a 33       	cpi	r24, 0x3A	; 58
+ 670:	0c f0       	brlt	.+2      	; 0x674 <itoa+0x2c>
+ 672:	89 5d       	subi	r24, 0xD9	; 217
+ 674:	81 93       	st	Z+, r24
+ 676:	cb 01       	movw	r24, r22
+ 678:	00 97       	sbiw	r24, 0x00	; 0
+ 67a:	a1 f7       	brne	.-24     	; 0x664 <itoa+0x1c>
+ 67c:	16 f4       	brtc	.+4      	; 0x682 <itoa+0x3a>
+ 67e:	5d e2       	ldi	r21, 0x2D	; 45
+ 680:	51 93       	st	Z+, r21
+ 682:	10 82       	st	Z, r1
+ 684:	c9 01       	movw	r24, r18
+ 686:	0c 94 4d 03 	jmp	0x69a	; 0x69a <strrev>
+
+0000068a <__mulhi_const_10>:
+ 68a:	7a e0       	ldi	r23, 0x0A	; 10
+ 68c:	97 9f       	mul	r25, r23
+ 68e:	90 2d       	mov	r25, r0
+ 690:	87 9f       	mul	r24, r23
+ 692:	80 2d       	mov	r24, r0
+ 694:	91 0d       	add	r25, r1
+ 696:	11 24       	eor	r1, r1
+ 698:	08 95       	ret
+
+0000069a <strrev>:
+ 69a:	dc 01       	movw	r26, r24
+ 69c:	fc 01       	movw	r30, r24
+ 69e:	67 2f       	mov	r22, r23
+ 6a0:	71 91       	ld	r23, Z+
+ 6a2:	77 23       	and	r23, r23
+ 6a4:	e1 f7       	brne	.-8      	; 0x69e <strrev+0x4>
+ 6a6:	32 97       	sbiw	r30, 0x02	; 2
+ 6a8:	04 c0       	rjmp	.+8      	; 0x6b2 <strrev+0x18>
+ 6aa:	7c 91       	ld	r23, X
+ 6ac:	6d 93       	st	X+, r22
+ 6ae:	70 83       	st	Z, r23
+ 6b0:	62 91       	ld	r22, -Z
+ 6b2:	ae 17       	cp	r26, r30
+ 6b4:	bf 07       	cpc	r27, r31
+ 6b6:	c8 f3       	brcs	.-14     	; 0x6aa <strrev+0x10>
+ 6b8:	08 95       	ret
+
+000006ba <__udivmodhi4>:
+ 6ba:	aa 1b       	sub	r26, r26
+ 6bc:	bb 1b       	sub	r27, r27
+ 6be:	51 e1       	ldi	r21, 0x11	; 17
+ 6c0:	07 c0       	rjmp	.+14     	; 0x6d0 <__udivmodhi4_ep>
+
+000006c2 <__udivmodhi4_loop>:
+ 6c2:	aa 1f       	adc	r26, r26
+ 6c4:	bb 1f       	adc	r27, r27
+ 6c6:	a6 17       	cp	r26, r22
+ 6c8:	b7 07       	cpc	r27, r23
+ 6ca:	10 f0       	brcs	.+4      	; 0x6d0 <__udivmodhi4_ep>
+ 6cc:	a6 1b       	sub	r26, r22
+ 6ce:	b7 0b       	sbc	r27, r23
+
+000006d0 <__udivmodhi4_ep>:
+ 6d0:	88 1f       	adc	r24, r24
+ 6d2:	99 1f       	adc	r25, r25
+ 6d4:	5a 95       	dec	r21
+ 6d6:	a9 f7       	brne	.-22     	; 0x6c2 <__udivmodhi4_loop>
+ 6d8:	80 95       	com	r24
+ 6da:	90 95       	com	r25
+ 6dc:	bc 01       	movw	r22, r24
+ 6de:	cd 01       	movw	r24, r26
+ 6e0:	08 95       	ret
+
+000006e2 <_exit>:
+ 6e2:	f8 94       	cli
+
+000006e4 <__stop_program>:
+ 6e4:	ff cf       	rjmp	.-2      	; 0x6e4 <__stop_program>
